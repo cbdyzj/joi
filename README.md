@@ -22,7 +22,7 @@ assert Joi.string().email().validate("cbdyzj@jianzhao.org");
 
 Person person = new Person("Alice", 10);
 Schema personSchema = Joi.object().type(Person.class)
-        .field("name", Joi.string().required().regex("Alice").required())
+        .field("name", Joi.string().regex("Alice").required())
         .field("age", Joi.integer().min(8).max(18).required());
 assert personSchema.validate(person);
 // bean validate
