@@ -6,7 +6,7 @@ Object schema validation
 
 ## Dependencies
 
-- [jOOR](https://github.com/jooq/joor)
+- [JOOR](https://github.com/jooq/joor)
 
 ## Usage
 
