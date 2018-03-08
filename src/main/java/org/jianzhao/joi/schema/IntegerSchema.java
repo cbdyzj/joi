@@ -7,13 +7,11 @@ public class IntegerSchema extends SchemaWare<IntegerSchema> {
     }
 
     public IntegerSchema max(Integer value) {
-        this.add(target -> (Integer) target <= value);
-        return this;
+        return this.add(target -> (Integer) target <= value);
     }
 
     public IntegerSchema min(Integer value) {
-        this.add(target -> (Integer) target >= value);
-        return this;
+        return this.add(target -> (Integer) target >= value);
     }
 
 }

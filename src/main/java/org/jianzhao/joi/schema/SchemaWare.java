@@ -25,7 +25,9 @@ public abstract class SchemaWare<T extends SchemaWare> implements Schema {
         return (T) this;
     }
 
-    void add(Schema schema) {
+    @SuppressWarnings("unchecked")
+    T add(Schema schema) {
         this.schemas.add(schema);
+        return (T) this;
     }
 }
