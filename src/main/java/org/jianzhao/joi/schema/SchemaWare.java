@@ -19,9 +19,9 @@ public abstract class SchemaWare<T extends SchemaWare> implements Schema {
         return this.schemas.stream().allMatch(schema -> schema.validate(target));
     }
 
+    @SuppressWarnings("unchecked")
     public T required() {
         this.isRequired = true;
-        // noinspection unchecked
         return (T) this;
     }
 
