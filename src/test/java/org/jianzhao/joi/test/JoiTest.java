@@ -9,16 +9,11 @@ public class JoiTest {
 
     @Test
     public void test() {
-        Schema intSchema = Joi.integer().min(5).max(10);
-        assert intSchema.validate(5);
-        assert !intSchema.validate(12);
-        assert !intSchema.validate(4);
+        assert Joi.integer().min(5).less(10).validate(7);
 
-        Schema strSchema = Joi.string().regex("hello.*");
-        assert strSchema.validate("hello!");
-        assert !strSchema.validate("hi");
+        assert Joi.string().regex("hello.*").validate("hello!");
 
-        assert Joi.string().alphanum().validate("abc123");
+        assert Joi.string().email().validate("cbdyzj@jianzhao.org");
 
         Person person = new Person("Alice", 10);
         Schema personSchema = Joi.object().type(Person.class)
