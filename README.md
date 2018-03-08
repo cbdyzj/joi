@@ -10,7 +10,7 @@ Object schema validation
 
 ## Usage
 
-```
+```java
 Schema intSchema = Joi.integer().min(5).max(10);
 assert intSchema.validate(5);
 assert !intSchema.validate(12);
