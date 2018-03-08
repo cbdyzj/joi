@@ -14,4 +14,20 @@ public class IntegerSchema extends SchemaWare<IntegerSchema> {
         return this.add(target -> (Integer) target >= value);
     }
 
+    public IntegerSchema greater(Integer value) {
+        return this.add(target -> (Integer) target > value);
+    }
+
+    public IntegerSchema less(Integer value) {
+        return this.add(target -> (Integer) target < value);
+    }
+
+    public IntegerSchema positive(Integer value) {
+        return this.add(target -> (Integer) target > 0);
+    }
+
+    public IntegerSchema negative(Integer value) {
+        return this.add(target -> (Integer) target < 0);
+    }
+
 }

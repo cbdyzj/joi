@@ -1,5 +1,7 @@
 package org.jianzhao.joi.schema;
 
+import java.util.regex.Pattern;
+
 public class StringSchema extends SchemaWare<StringSchema> {
 
     public StringSchema() {
@@ -7,7 +9,8 @@ public class StringSchema extends SchemaWare<StringSchema> {
     }
 
     public StringSchema regex(String pattern) {
-        return this.add(target -> ((String) target).matches(pattern));
+        Pattern p = Pattern.compile(pattern);
+        return this.add(target -> p.matcher((String) target).matches());
     }
 
     public StringSchema alphanum() {
@@ -21,4 +24,13 @@ public class StringSchema extends SchemaWare<StringSchema> {
     public StringSchema length(int limit) {
         return this.add(target -> ((String) target).length() == limit);
     }
+
+    public StringSchema min(int limit) {
+        return this.add(target -> ((String) target).length() >= limit);
+    }
+
+    public StringSchema max(int limit) {
+        return this.add(target -> ((String) target).length() <= limit);
+    }
+
 }
