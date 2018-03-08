@@ -1,0 +1,12 @@
+// Gradle 4.5
+group 'org.jianzhao.joi'
+version '0.0.1'
+
+apply plugin: 'java'
+
+sourceCompatibility = 9
+
+dependencies {
+    compile group: 'org.jooq', name: 'joor', version: '0.9.7'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.0.3'
+}
