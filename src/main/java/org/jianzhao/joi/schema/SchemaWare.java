@@ -5,14 +5,14 @@ import org.jianzhao.joi.Schema;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class SchemaWare<T extends SchemaWare> implements Schema {
+public abstract class SchemaWare<S extends Schema<T>, T> implements Schema<T> {
 
-    private List<Schema> schemas = new ArrayList<>();
+    private List<Schema<T>> schemas = new ArrayList<>();
 
     private boolean isRequired = false;
 
     @Override
-    public boolean validate(Object target) {
+    public boolean validate(T target) {
         if (null == target) {
             return !this.isRequired;
         }
@@ -20,14 +20,14 @@ public abstract class SchemaWare<T extends SchemaWare> implements Schema {
     }
 
     @SuppressWarnings("unchecked")
-    public T required() {
+    public S required() {
         this.isRequired = true;
-        return (T) this;
+        return (S) this;
     }
 
     @SuppressWarnings("unchecked")
-    T add(Schema schema) {
+    S add(Schema<T> schema) {
         this.schemas.add(schema);
-        return (T) this;
+        return (S) this;
     }
 }

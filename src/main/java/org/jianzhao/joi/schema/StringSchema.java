@@ -2,10 +2,10 @@ package org.jianzhao.joi.schema;
 
 import java.util.regex.Pattern;
 
-public class StringSchema extends SchemaWare<StringSchema> {
+public class StringSchema extends SchemaWare<StringSchema, String> {
 
     public StringSchema() {
-        this.add(target -> target instanceof String);
+        this.add(String.class::isInstance);
     }
 
     public StringSchema regex(String pattern) {
@@ -22,15 +22,15 @@ public class StringSchema extends SchemaWare<StringSchema> {
     }
 
     public StringSchema length(int limit) {
-        return this.add(target -> ((String) target).length() == limit);
+        return this.add(target -> target.length() == limit);
     }
 
     public StringSchema min(int limit) {
-        return this.add(target -> ((String) target).length() >= limit);
+        return this.add(target -> target.length() >= limit);
     }
 
     public StringSchema max(int limit) {
-        return this.add(target -> ((String) target).length() <= limit);
+        return this.add(target -> target.length() <= limit);
     }
 
 }

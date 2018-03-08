@@ -1,7 +1,7 @@
 package org.jianzhao.joi;
 
-public interface Schema {
+public interface Schema<T> {
 
-    boolean validate(Object target);
+    boolean validate(T target);
 
 }

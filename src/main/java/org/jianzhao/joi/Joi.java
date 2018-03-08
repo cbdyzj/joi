@@ -6,7 +6,7 @@ import org.jianzhao.joi.schema.StringSchema;
 
 public final class Joi {
 
-    public static void validate(Object target, Schema schema) {
+    public static <T> void validate(T target, Schema<T> schema) {
         if (!schema.validate(target)) {
             throw new JoiException("Validate failed");
         }
@@ -20,8 +20,8 @@ public final class Joi {
         return new IntegerSchema();
     }
 
-    public static ObjectSchema object() {
-        return new ObjectSchema();
+    public static <T> ObjectSchema<T> object() {
+        return new ObjectSchema<T>();
     }
 
 }
