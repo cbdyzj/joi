@@ -12,7 +12,8 @@ Object schema validation
 
 ### Download
 
-[![Release](https://jitpack.io/v/User/Repo.svg)](https://jitpack.io/#cbdyzj/joi)
+[![Release](https://jitpack.io/v/User/Repo.svg)]
+(https://jitpack.io/#User/Repo)
 
 ### Simple example
 
