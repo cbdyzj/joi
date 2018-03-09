@@ -15,11 +15,11 @@ public class JoiTest {
 
         assert Joi.string().email().validate("cbdyzj@jianzhao.org");
 
-        Person person = new Person("Alice", 10);
-        Schema<Person> personSchema = Joi.<Person>object().type(Person.class)
+        Teacher alice = new Teacher("Alice", 10);
+        Schema<Human> personSchema = Joi.<Human>object().type(Teacher.class)
                 .field("name", Joi.string().regex("Alice").required())
-                .field(Person::getAge, Joi.integer().min(8).max(18).required());
+                .field(Human::getAge, Joi.integer().min(8).max(18).required());
 
-        assert personSchema.validate(person);
+        assert personSchema.validate(alice);
     }
 }

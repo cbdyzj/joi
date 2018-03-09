@@ -15,7 +15,7 @@ public class ObjectSchema<T> implements Schema<T> {
         return this.ctx.validate(target);
     }
 
-    public ObjectSchema<T> type(Class<T> type) {
+    public ObjectSchema<T> type(Class<? extends T> type) {
         this.ctx.add(type::isInstance);
         return this;
     }

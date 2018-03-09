@@ -1,9 +1,9 @@
 package org.jianzhao.joi.test;
 
 @SuppressWarnings("WeakerAccess")
-public class Person {
+public class Human {
 
-    public Person(String name, int age) {
+    public Human(String name, int age) {
         this.name = name;
         this.age = age;
     }
