@@ -10,6 +10,12 @@ Object schema validation
 
 ## Usage
 
+### Download
+
+[![Release](https://jitpack.io/v/User/Repo.svg)](https://jitpack.io/#cbdyzj/joi)
+
+### Simple example
+
 ```java
 assert Joi.integer().min(5).less(10).validate(7);
 // true if 5 <= 7 < 10
