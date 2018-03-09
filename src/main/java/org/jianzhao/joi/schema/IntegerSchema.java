@@ -1,33 +1,55 @@
 package org.jianzhao.joi.schema;
 
-public class IntegerSchema extends SchemaWare<IntegerSchema, Integer> {
+import org.jianzhao.joi.Schema;
+import org.jianzhao.joi.SchemaContext;
+
+public class IntegerSchema implements Schema<Integer> {
+
+    private SchemaContext<Integer> ctx = new SchemaContext<>();
 
     public IntegerSchema() {
-        this.add(Integer.class::isInstance);
+        this.ctx.add(Integer.class::isInstance);
+    }
+
+    @Override
+    public boolean validate(Integer target) {
+        return this.ctx.validate(target);
+    }
+
+    public IntegerSchema required() {
+        this.ctx.required();
+        return this;
     }
 
     public IntegerSchema max(Integer value) {
-        return this.add(target -> target <= value);
+        this.ctx.add(target -> target <= value);
+        return this;
     }
 
     public IntegerSchema min(Integer value) {
-        return this.add(target -> target >= value);
+        this.ctx.add(target -> target >= value);
+        return this;
     }
 
     public IntegerSchema greater(Integer value) {
-        return this.add(target -> target > value);
+        this.ctx.add(target -> target > value);
+        return this;
     }
 
     public IntegerSchema less(Integer value) {
-        return this.add(target -> target < value);
+        this.ctx.add(target -> target < value);
+        return this;
     }
 
     public IntegerSchema positive(Integer value) {
-        return this.add(target -> target > 0);
+        this.ctx.add(target -> target > 0);
+        return this;
     }
 
     public IntegerSchema negative(Integer value) {
-        return this.add(target -> target < 0);
+        this.ctx.add(target -> target < 0);
+        return this;
     }
+
 
 }

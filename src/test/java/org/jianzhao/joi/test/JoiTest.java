@@ -2,7 +2,6 @@ package org.jianzhao.joi.test;
 
 import org.jianzhao.joi.Joi;
 import org.jianzhao.joi.Schema;
-import org.jianzhao.joi.schema.ObjectSchema;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("WeakerAccess")

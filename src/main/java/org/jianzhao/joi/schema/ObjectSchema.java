@@ -1,15 +1,31 @@
 package org.jianzhao.joi.schema;
 
 import org.jianzhao.joi.Schema;
+import org.jianzhao.joi.SchemaContext;
 import org.joor.Reflect;
 
-public class ObjectSchema<T> extends SchemaWare<ObjectSchema<T>, T> {
+public class ObjectSchema<T> implements Schema<T> {
+
+    private SchemaContext<T> ctx = new SchemaContext<>();
+
+    @Override
+    public boolean validate(T target) {
+        return this.ctx.validate(target);
+    }
 
     public ObjectSchema<T> type(Class<T> type) {
-        return this.add(type::isInstance);
+        this.ctx.add(type::isInstance);
+        return this;
+    }
+
+    public ObjectSchema<T> required() {
+        this.ctx.required();
+        return this;
     }
 
     public <I> ObjectSchema<T> field(String field, Schema<I> schema) {
-        return this.add(target -> schema.validate(Reflect.on(target).get(field)));
+        this.ctx.add(target -> schema.validate(Reflect.on(target).get(field)));
+        return this;
     }
+
 }
