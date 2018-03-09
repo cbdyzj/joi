@@ -4,6 +4,8 @@ import org.jianzhao.joi.Schema;
 import org.jianzhao.joi.SchemaContext;
 import org.joor.Reflect;
 
+import java.util.function.Function;
+
 public class ObjectSchema<T> implements Schema<T> {
 
     private SchemaContext<T> ctx = new SchemaContext<>();
@@ -25,6 +27,11 @@ public class ObjectSchema<T> implements Schema<T> {
 
     public <I> ObjectSchema<T> field(String field, Schema<I> schema) {
         this.ctx.add(target -> schema.validate(Reflect.on(target).get(field)));
+        return this;
+    }
+
+    public <I> ObjectSchema<T> field(Function<T, I> getter, Schema<I> schema) {
+        this.ctx.add(target -> schema.validate(getter.apply(target)));
         return this;
     }
 
