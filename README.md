@@ -2,11 +2,11 @@
 
 Object schema validation 
 
-> see: [joi](https://github.com/hapijs/joi)
+> see: [joi](https://github.com/hapijs/joi): Object schema validation in JavaScript
 
 ## Dependencies
 
-- [JOOR](https://github.com/jooq/joor)
+- [JOOR](https://github.com/jooq/joor): Fluent Reflection in Java
 
 ## Usage
 
