@@ -3,14 +3,15 @@ package org.jianzhao.joi.test;
 @SuppressWarnings("WeakerAccess")
 public class Human {
 
-    public Human(String name, int age) {
+    private String name;
+    private Integer age;
+    private String[] hobbies;
+
+    public Human(String name, Integer age, String[] hobbies) {
         this.name = name;
         this.age = age;
+        this.hobbies = hobbies;
     }
-
-    private String name;
-
-    private int age;
 
     public String getName() {
         return name;
@@ -20,11 +21,19 @@ public class Human {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String[] getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String[] hobbies) {
+        this.hobbies = hobbies;
     }
 }
