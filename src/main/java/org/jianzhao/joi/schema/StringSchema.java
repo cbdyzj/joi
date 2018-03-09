@@ -3,6 +3,7 @@ package org.jianzhao.joi.schema;
 import org.jianzhao.joi.Schema;
 import org.jianzhao.joi.SchemaContext;
 
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class StringSchema implements Schema<String> {
@@ -10,12 +11,17 @@ public class StringSchema implements Schema<String> {
     private SchemaContext<String> ctx = new SchemaContext<>();
 
     public StringSchema() {
-        this.ctx.add(String.class::isInstance);
+        this.ctx.addPredicate(String.class::isInstance);
     }
 
     @Override
-    public boolean validate(String target) {
+    public Optional<String> validate(String target) {
         return this.ctx.validate(target);
+    }
+
+    public StringSchema message(String message) {
+        this.ctx.message(message);
+        return this;
     }
 
     public StringSchema required() {
@@ -25,7 +31,7 @@ public class StringSchema implements Schema<String> {
 
     public StringSchema regex(String pattern) {
         Pattern p = Pattern.compile(pattern);
-        this.ctx.add(target -> p.matcher(target).matches());
+        this.ctx.addPredicate(target -> p.matcher(target).matches());
         return this;
     }
 
@@ -38,17 +44,17 @@ public class StringSchema implements Schema<String> {
     }
 
     public StringSchema length(int limit) {
-        this.ctx.add(target -> target.length() == limit);
+        this.ctx.addPredicate(target -> target.length() == limit);
         return this;
     }
 
     public StringSchema min(int limit) {
-        this.ctx.add(target -> target.length() >= limit);
+        this.ctx.addPredicate(target -> target.length() >= limit);
         return this;
     }
 
     public StringSchema max(int limit) {
-        this.ctx.add(target -> target.length() <= limit);
+        this.ctx.addPredicate(target -> target.length() <= limit);
         return this;
     }
 

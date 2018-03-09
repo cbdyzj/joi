@@ -1,6 +1,8 @@
 package org.jianzhao.joi;
 
+import java.util.Optional;
+
 public interface Schema<T> {
 
-    boolean validate(T target);
+    Optional<String> validate(T target);
 }

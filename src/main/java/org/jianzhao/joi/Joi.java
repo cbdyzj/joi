@@ -4,12 +4,16 @@ import org.jianzhao.joi.schema.IntegerSchema;
 import org.jianzhao.joi.schema.ObjectSchema;
 import org.jianzhao.joi.schema.StringSchema;
 
+import java.util.Optional;
+
 public final class Joi {
 
-    public static <T> void validate(T target, Schema<T> schema) {
-        if (!schema.validate(target)) {
-            throw new JoiException("Validate failed");
-        }
+    public static final String SUCCEED = "Succeed!";
+    public static final String FAILED = "Failed!";
+
+
+    public static <T> Optional<String> validate(T target, Schema<T> schema) {
+        return schema.validate(target);
     }
 
     public static StringSchema string() {
