@@ -8,10 +8,6 @@ import java.util.Optional;
 
 public final class Joi {
 
-    public static final String SUCCEED = "Succeed!";
-    public static final String FAILED = "Failed!";
-
-
     public static <T> Optional<String> validate(T target, Schema<T> schema) {
         return schema.validate(target);
     }
