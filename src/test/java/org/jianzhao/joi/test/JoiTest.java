@@ -25,7 +25,6 @@ public class JoiTest {
 
         Optional<String> os = humanSchema.validate(alice);
         assert os.isPresent();
-        System.out.print(os.get());
         assert os.get().equals("Hobbies number to small!");
     }
 }

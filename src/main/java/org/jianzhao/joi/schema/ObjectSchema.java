@@ -1,10 +1,9 @@
 package org.jianzhao.joi.schema;
 
-import org.jianzhao.joi.Schema;
 import org.jianzhao.joi.AnySchema;
+import org.jianzhao.joi.Schema;
 import org.joor.Reflect;
 
-import java.util.Optional;
 import java.util.function.Function;
 
 public class ObjectSchema<T> extends AnySchema<T, ObjectSchema<T>> {

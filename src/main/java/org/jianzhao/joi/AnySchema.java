@@ -5,40 +5,39 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 @SuppressWarnings("unchecked")
 public abstract class AnySchema<T, S extends AnySchema<T, ?>> implements Schema<T> {
 
     private static final String DEFAULT_MESSAGE = "Validate failed!";
-    private String message = DEFAULT_MESSAGE;
+
+    private Supplier<Optional<String>> message = () -> Optional.of(DEFAULT_MESSAGE);
+    private Supplier<Optional<String>> requiredMessage = Optional::empty;
+
     private List<Schema<T>> schemas = new ArrayList<>();
-    private boolean required = false;
 
     @Override
     public Optional<String> validate(T target) {
         // target is null
         if (Objects.isNull(target)) {
-            if (this.required) {
-                return Optional.of(this.message);
-            } else {
-                return Optional.empty();
-            }
+            return this.requiredMessage.get();
         }
         // target is not null
         Optional<String> message = this.schemas.stream().map(schema -> schema.validate(target)).filter(Optional::isPresent).reduce(Optional.empty(), (a, c) -> c);
-        if (message.isPresent() && !this.message.equals(DEFAULT_MESSAGE)) {
-            message = Optional.of(this.message);
+        if (message.isPresent() && this.message.get().isPresent() && !DEFAULT_MESSAGE.equals(this.message.get().get())) {
+            message = this.message.get();
         }
         return message;
     }
 
     public S message(String message) {
-        this.message = message;
+        this.message = () -> Optional.of(message);
         return (S) this;
     }
 
     public S required() {
-        this.required = true;
+        this.requiredMessage = () -> Optional.of(DEFAULT_MESSAGE);
         return (S) this;
     }
 
@@ -48,7 +47,7 @@ public abstract class AnySchema<T, S extends AnySchema<T, ?>> implements Schema<
     }
 
     public S predicate(Predicate<T> predicate) {
-        this.schemas.add(target -> predicate.test(target) ? Optional.empty() : Optional.of(this.message));
+        this.schemas.add(target -> predicate.test(target) ? Optional.empty() : this.message.get());
         return (S) this;
     }
 }
