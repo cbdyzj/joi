@@ -1,61 +1,35 @@
 package org.jianzhao.joi.schema;
 
-import org.jianzhao.joi.Schema;
-import org.jianzhao.joi.SchemaContext;
+import org.jianzhao.joi.AnySchema;
 
-import java.util.Optional;
-
-public class IntegerSchema implements Schema<Integer> {
-
-    private SchemaContext<Integer> ctx = new SchemaContext<>();
+public class IntegerSchema extends AnySchema<Integer, IntegerSchema> {
 
     public IntegerSchema() {
-        this.ctx.addPredicate(Integer.class::isInstance);
-    }
-
-    @Override
-    public Optional<String> validate(Integer target) {
-        return this.ctx.validate(target);
-    }
-
-    public IntegerSchema message(String message) {
-        this.ctx.message(message);
-        return this;
-    }
-
-    public IntegerSchema required() {
-        this.ctx.required();
-        return this;
+        this.predicate(Integer.class::isInstance);
     }
 
     public IntegerSchema max(Integer value) {
-        this.ctx.addPredicate(target -> target <= value);
-        return this;
+        return this.predicate(target -> target <= value);
     }
 
     public IntegerSchema min(Integer value) {
-        this.ctx.addPredicate(target -> target >= value);
-        return this;
+        return this.predicate(target -> target >= value);
     }
 
     public IntegerSchema greater(Integer value) {
-        this.ctx.addPredicate(target -> target > value);
-        return this;
+        return this.predicate(target -> target > value);
     }
 
     public IntegerSchema less(Integer value) {
-        this.ctx.addPredicate(target -> target < value);
-        return this;
+        return this.predicate(target -> target < value);
     }
 
     public IntegerSchema positive(Integer value) {
-        this.ctx.addPredicate(target -> target > 0);
-        return this;
+        return this.predicate(target -> target > 0);
     }
 
     public IntegerSchema negative(Integer value) {
-        this.ctx.addPredicate(target -> target < 0);
-        return this;
+        return this.predicate(target -> target < 0);
     }
 
 }

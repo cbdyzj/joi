@@ -2,6 +2,11 @@
 group 'org.jianzhao.joi'
 version '0.0.4'
 
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
 apply plugin: 'java'
 
 sourceCompatibility = 8
