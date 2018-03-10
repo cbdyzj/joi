@@ -36,8 +36,11 @@ assert os.get().equals("Hobbies number to small!");
 
 ## Api
 
-- any
+- Any
   - required
+  - message
+  - schema
+  - predicate
 - String
   - regex
   - alphanum
