@@ -23,14 +23,17 @@ public abstract class AnySchema<T, S extends AnySchema<T, ?>> implements Schema<
             return this.validateNull();
         }
         // target is not null
-        Optional<String> message = this.schemas.stream()
+        Optional<Optional<String>> anyMessage = this.schemas.stream()
                 .map(schema -> schema.validate(target))
                 .filter(Optional::isPresent)
-                .reduce(Optional.empty(), (a, c) -> c);
-        if (message.isPresent() && this.message.get().isPresent()) {
+                .findAny();
+        if(!anyMessage.isPresent()){
+            return Optional.empty();
+        }
+        if(this.message.get().isPresent()){
             return this.message.get();
         }
-        return message;
+        return anyMessage.get();
     }
 
     public S message(String message) {
