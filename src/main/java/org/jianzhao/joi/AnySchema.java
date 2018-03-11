@@ -27,10 +27,10 @@ public abstract class AnySchema<T, S extends AnySchema<T, ?>> implements Schema<
                 .map(schema -> schema.validate(target))
                 .filter(Optional::isPresent)
                 .findAny();
-        if(!anyMessage.isPresent()){
+        if (!anyMessage.isPresent()) {
             return Optional.empty();
         }
-        if(this.message.get().isPresent()){
+        if (this.message.get().isPresent()) {
             return this.message.get();
         }
         return anyMessage.get();
@@ -56,14 +56,14 @@ public abstract class AnySchema<T, S extends AnySchema<T, ?>> implements Schema<
         return (S) this;
     }
 
-    private Optional<String> validateNull(){
-        if(this.required){
-            if(this.message.get().isPresent()){
+    private Optional<String> validateNull() {
+        if (this.required) {
+            if (this.message.get().isPresent()) {
                 return this.message.get();
-            }else {
+            } else {
                 return DEFAULT_MESSAGE.get();
             }
-        }else {
+        } else {
             return Optional.empty();
         }
     }

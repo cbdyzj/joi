@@ -6,7 +6,7 @@ Object schema validation
 
 ## Dependencies
 
-- [JOOR](https://github.com/jooq/joor): Fluent Reflection in Java
+None!
 
 ## Usage
 
@@ -48,6 +48,7 @@ assert os.get().equals("Hobbies number to small!");
   - length
   - min
   - max
+  - empty
 - Integer
   - max
   - min

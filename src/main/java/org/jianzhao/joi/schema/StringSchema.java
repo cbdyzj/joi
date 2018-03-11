@@ -35,4 +35,8 @@ public class StringSchema extends AnySchema<String, StringSchema> {
         return this.predicate(target -> target.length() <= limit);
     }
 
+    public StringSchema empty(){
+        return this.regex("^\\s*$");
+    }
+
 }
