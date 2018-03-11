@@ -2,7 +2,10 @@
 
 Object schema validation 
 
-> see: [joi](https://github.com/hapijs/joi): Object schema validation in JavaScript
+[![Build Status](https://travis-ci.org/cbdyzj/joi.svg?branch=master)](https://travis-ci.org/cbdyzj/joi)
+[![Release](https://jitpack.io/v/cbdyzj/joi.svg)](https://jitpack.io/#cbdyzj/joi)
+
+> See: [joi](https://github.com/hapijs/joi): Object schema validation in JavaScript
 
 ## Dependencies
 
@@ -12,7 +15,7 @@ None!
 
 ### Download
 
-[![Release](https://jitpack.io/v/cbdyzj/joi.svg)](https://jitpack.io/#cbdyzj/joi)
+See [JitPack](https://jitpack.io/#cbdyzj/joi/0.0.8)
 
 ### Simple example
 
