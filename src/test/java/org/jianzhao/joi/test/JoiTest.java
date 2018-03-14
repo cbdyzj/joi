@@ -2,7 +2,6 @@ package org.jianzhao.joi.test;
 
 import org.jianzhao.joi.Joi;
 import org.jianzhao.joi.Schema;
-import org.joor.Reflect;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -21,7 +20,7 @@ public class JoiTest {
 
         Human alice = new Teacher("Alice", null, new String[]{"reading", "film"});
         Schema<Human> humanSchema = Joi.<Human>object().type(Teacher.class)
-                .field(target -> Reflect.on(target).field("name").get(), Joi.string().regex("Alice").required().message("Wrong name!"))
+                .field(Human::getName, Joi.string().regex("Alice").required().message("Wrong name!"))
                 .field(Human::getAge, Joi.integer().min(8).max(18))
                 .field(Human::getHobbies, hobbies -> hobbies.length >= 3 ? Optional.empty() : Optional.of("Hobbies number to small!"));
 

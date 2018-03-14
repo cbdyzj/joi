@@ -12,7 +12,5 @@ apply plugin: 'java'
 sourceCompatibility = 8
 
 dependencies {
-    testCompile group: 'org.jooq', name: 'joor', version: '0.9.6'
-    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.0.3'
 }

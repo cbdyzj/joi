@@ -29,7 +29,7 @@ assert !Joi.string().email().validate("cbdyzj@jianzhao.org").isPresent();
 
 Human alice = new Teacher("Alice", null, new String[]{"reading", "film"});
 Schema<Human> humanSchema = Joi.<Human>object().type(Teacher.class)
-        .field(target -> Reflect.on(target).field("name").get(), Joi.string().regex("Alice").required().message("Wrong name!"))
+        .field(Human::getName, Joi.string().regex("Alice").required().message("Wrong name!"))
         .field(Human::getAge, Joi.integer().min(8).max(18))
         .field(Human::getHobbies, hobbies -> hobbies.length >= 3 ? Optional.empty() : Optional.of("Hobbies number to small!"));
 
