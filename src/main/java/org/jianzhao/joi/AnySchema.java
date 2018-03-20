@@ -24,12 +24,12 @@ public abstract class AnySchema<T, S extends AnySchema<T, ?>> implements Schema<
         // target is not null
         Optional<Result> anyResult = this.schemas.stream()
                 .map(schema -> schema.validate(target))
-                .filter(Result::nonValid)
+                .filter(r -> !r.isValid())
                 .findAny();
         if (!anyResult.isPresent()) {
             return Result.valid();
         }
-        if (this.result.nonValid()) {
+        if (!this.result.isValid()) {
             return this.result;
         }
         return anyResult.get();
@@ -57,7 +57,7 @@ public abstract class AnySchema<T, S extends AnySchema<T, ?>> implements Schema<
 
     private Result validateNull() {
         if (this.required) {
-            if (this.result.nonValid()) {
+            if (!this.result.isValid()) {
                 return this.result;
             } else {
                 return DEFAULT_RESULT;
