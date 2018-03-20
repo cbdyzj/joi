@@ -26,7 +26,7 @@ public class JoiTest {
                 .field(Human::getHobbies, hobbies -> hobbies.length >= 3 ? Result.valid() : Result.of("Hobbies number to small!"));
 
         Result result = humanSchema.validate(alice);
-        assert !result.isValid();
+        assert result.isInvalid();
         assert "Hobbies number to small!".equals(result.message());
     }
 }

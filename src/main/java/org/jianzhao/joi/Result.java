@@ -29,14 +29,18 @@ public class Result {
         return Objects.isNull(this.message);
     }
 
+    public boolean isInvalid() {
+        return !this.isValid();
+    }
+
     public void assertValid() {
-        if (!this.isValid()) {
+        if (this.isInvalid()) {
             throw new RuntimeException(this.message);
         }
     }
 
     public <E extends Exception> void assertValid(Supplier<E> es) throws E {
-        if (!this.isValid()) {
+        if (this.isInvalid()) {
             throw es.get();
         }
     }
