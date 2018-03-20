@@ -4,11 +4,9 @@ import org.jianzhao.joi.schema.IntegerSchema;
 import org.jianzhao.joi.schema.ObjectSchema;
 import org.jianzhao.joi.schema.StringSchema;
 
-import java.util.Optional;
-
 public final class Joi {
 
-    public static <T> Optional<String> validate(T target, Schema<T> schema) {
+    public static <T> Result validate(T target, Schema<T> schema) {
         return schema.validate(target);
     }
 

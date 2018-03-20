@@ -1,6 +1,7 @@
 package org.jianzhao.joi.test;
 
 import org.jianzhao.joi.Joi;
+import org.jianzhao.joi.Result;
 import org.jianzhao.joi.Schema;
 import org.junit.jupiter.api.Test;
 
@@ -11,21 +12,21 @@ public class JoiTest {
 
     @Test
     public void test() {
-        assert !Joi.integer().min(5).less(10).validate(7).isPresent();
+        Joi.integer().min(5).less(10).validate(7).assertValid();
 
-        assert !Joi.string().regex("hello.*").validate("hello!").isPresent();
-        assert !Joi.string().empty().validate("\n").isPresent();
+        Joi.string().regex("hello.*").validate("hello!").assertValid();
+        Joi.string().empty().validate("\n").assertValid();
 
-        assert !Joi.string().email().validate("cbdyzj@jianzhao.org").isPresent();
+        Joi.string().email().validate("cbdyzj@jianzhao.org").assertValid();
 
         Human alice = new Teacher("Alice", null, new String[]{"reading", "film"});
         Schema<Human> humanSchema = Joi.<Human>object().type(Teacher.class)
                 .field(Human::getName, Joi.string().regex("Alice").required().message("Wrong name!"))
                 .field(Human::getAge, Joi.integer().min(8).max(18))
-                .field(Human::getHobbies, hobbies -> hobbies.length >= 3 ? Optional.empty() : Optional.of("Hobbies number to small!"));
+                .field(Human::getHobbies, hobbies -> hobbies.length >= 3 ? Result.valid() : Result.of("Hobbies number to small!"));
 
-        Optional<String> os = humanSchema.validate(alice);
-        assert os.isPresent();
-        assert os.get().equals("Hobbies number to small!");
+        Result result = humanSchema.validate(alice);
+        assert result.nonValid();
+        assert "Hobbies number to small!".equals(result.message());
     }
 }

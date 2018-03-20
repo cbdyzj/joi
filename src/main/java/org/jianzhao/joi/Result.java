@@ -1,11 +1,11 @@
 package org.jianzhao.joi;
 
-import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 public class Result {
 
-    private static final Result VALID = new Result(null);
+    private static final Result VALID = Result.of(null);
 
     private String message;
 
@@ -22,14 +22,27 @@ public class Result {
     }
 
     public String message() {
-        if (Objects.isNull(this.message)) {
-            throw new NoSuchElementException("No error message");
-        }
         return this.message;
     }
 
     public boolean isValid() {
         return Objects.isNull(this.message);
+    }
+
+    public boolean nonValid() {
+        return !this.isValid();
+    }
+
+    public void assertValid() {
+        if (this.nonValid()) {
+            throw new RuntimeException(this.message);
+        }
+    }
+
+    public <E extends Exception> void assertValid(Supplier<E> es) throws E {
+        if (this.nonValid()) {
+            throw es.get();
+        }
     }
 
     @Override
