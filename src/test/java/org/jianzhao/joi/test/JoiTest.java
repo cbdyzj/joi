@@ -3,7 +3,10 @@ package org.jianzhao.joi.test;
 import org.jianzhao.joi.Joi;
 import org.jianzhao.joi.Result;
 import org.jianzhao.joi.Schema;
+import org.jianzhao.joi.schema.ArraySchema;
 import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Array;
 
 @SuppressWarnings("WeakerAccess")
 public class JoiTest {
@@ -30,4 +33,5 @@ public class JoiTest {
         assert result.isInvalid();
         assert "Hobbies number to small!".equals(result.message());
     }
+
 }

@@ -1,9 +1,6 @@
 package org.jianzhao.joi;
 
-import org.jianzhao.joi.schema.IntegerSchema;
-import org.jianzhao.joi.schema.LongIntegerSchema;
-import org.jianzhao.joi.schema.ObjectSchema;
-import org.jianzhao.joi.schema.StringSchema;
+import org.jianzhao.joi.schema.*;
 
 public final class Joi {
 
@@ -25,6 +22,10 @@ public final class Joi {
 
     public static LongIntegerSchema longInteger() {
         return new LongIntegerSchema();
+    }
+
+    public static ArraySchema array() {
+        return new ArraySchema();
     }
 
 }
