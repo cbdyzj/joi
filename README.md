@@ -15,7 +15,7 @@ None!
 
 ### Download
 
-See [JitPack](https://jitpack.io/#cbdyzj/joi/0.0.8)
+See [JitPack](https://jitpack.io/#cbdyzj/joi/0.0.10)
 
 ### Simple example
 
@@ -58,6 +58,13 @@ assert "Hobbies number to small!".equals(result.message());
   - max
   - empty
 - Integer
+  - max
+  - min
+  - greater
+  - less
+  - positive
+  - negative
+- LongInteger
   - max
   - min
   - greater
