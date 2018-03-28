@@ -35,6 +35,11 @@ public abstract class AnySchema<T, S extends AnySchema<T, ?>> implements Schema<
         return anyResult.get();
     }
 
+    public T requireValid(T target) {
+        this.validate(target).assertValid();
+        return target;
+    }
+
     public S message(String message) {
         this.result = Result.of(message);
         return (S) this;
