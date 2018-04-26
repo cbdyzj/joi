@@ -1,5 +1,6 @@
 package org.jianzhao.joi;
 
+@FunctionalInterface
 public interface Schema<T> {
 
     Result validate(T target);
