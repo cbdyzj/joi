@@ -24,11 +24,11 @@ public class LongIntegerSchema extends AnySchema<Long, LongIntegerSchema> {
         return this.predicate(target -> target < value);
     }
 
-    public LongIntegerSchema positive(long value) {
+    public LongIntegerSchema positive() {
         return this.predicate(target -> target > 0);
     }
 
-    public LongIntegerSchema negative(long value) {
+    public LongIntegerSchema negative() {
         return this.predicate(target -> target < 0);
     }
 

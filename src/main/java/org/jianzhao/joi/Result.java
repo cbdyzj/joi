@@ -1,6 +1,8 @@
 package org.jianzhao.joi;
 
 import java.util.Objects;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class Result {
@@ -39,9 +41,9 @@ public class Result {
         }
     }
 
-    public <E extends Exception> void assertValid(Supplier<E> es) throws E {
+    public <E extends Exception> void assertValid(Function<String, E> f) throws E {
         if (this.isInvalid()) {
-            throw es.get();
+            throw f.apply(this.message);
         }
     }
 

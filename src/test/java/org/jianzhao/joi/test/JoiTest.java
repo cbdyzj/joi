@@ -3,10 +3,7 @@ package org.jianzhao.joi.test;
 import org.jianzhao.joi.Joi;
 import org.jianzhao.joi.Result;
 import org.jianzhao.joi.Schema;
-import org.jianzhao.joi.schema.ArraySchema;
 import org.junit.jupiter.api.Test;
-
-import java.lang.reflect.Array;
 
 @SuppressWarnings("WeakerAccess")
 public class JoiTest {
@@ -16,8 +13,8 @@ public class JoiTest {
         Joi.integer().min(5).less(10).validate(7).assertValid();
         Joi.longInteger().min(3000000000L).less(5000000000L).validate(4000000000L).assertValid();
 
-        Joi.string().regex("hello.*").validate("hello!")
-                .assertValid(() -> new RuntimeException("Not hello!"));
+        Joi.string().regex("hello.*").message("Not hello!").validate("hello!")
+                .assertValid(IllegalArgumentException::new);
 
         Joi.string().empty().validate("\n").assertValid();
 

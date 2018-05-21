@@ -23,8 +23,8 @@ See [JitPack](https://jitpack.io/#cbdyzj/joi/0.1.0)
 Joi.integer().min(5).less(10).validate(7).assertValid();
 Joi.longInteger().min(3000000000L).less(5000000000L).validate(4000000000L).assertValid();
 
-Joi.string().regex("hello.*").validate("hello!")
-        .assertValid(() -> new RuntimeException("Not hello!"));
+Joi.string().regex("hello.*").message("Not hello!").validate("hello!")
+        .assertValid(IllegalArgumentException::new);
 
 Joi.string().empty().validate("\n").assertValid();
 

@@ -24,11 +24,11 @@ public class IntegerSchema extends AnySchema<Integer, IntegerSchema> {
         return this.predicate(target -> target < value);
     }
 
-    public IntegerSchema positive(Integer value) {
+    public IntegerSchema positive() {
         return this.predicate(target -> target > 0);
     }
 
-    public IntegerSchema negative(Integer value) {
+    public IntegerSchema negative() {
         return this.predicate(target -> target < 0);
     }
 
