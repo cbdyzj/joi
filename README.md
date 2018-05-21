@@ -15,7 +15,7 @@ None!
 
 ### Download
 
-See [JitPack](https://jitpack.io/#cbdyzj/joi/0.1.0)
+See [JitPack](https://jitpack.io/#cbdyzj/joi/0.2.0)
 
 ### Simple example
 
