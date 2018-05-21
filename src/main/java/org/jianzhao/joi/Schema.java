@@ -1,7 +1,5 @@
 package org.jianzhao.joi;
 
-import java.util.Objects;
-
 @FunctionalInterface
 public interface Schema<T> {
 
@@ -15,7 +13,9 @@ public interface Schema<T> {
     }
 
     default Schema<T> invert(String message) {
-        Objects.requireNonNull(message, "Message require NonNull!");
+        if (message == null) {
+            throw new IllegalArgumentException("Message require non-null!");
+        }
         return target -> this.validate(target).isInvalid() ? Result.valid() : Result.of(message);
     }
 
