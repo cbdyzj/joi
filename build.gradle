@@ -1,6 +1,5 @@
-// Gradle 4.5
 group = 'org.jianzhao.joi'
-version = '0.0.8'
+version = '0.2.0'
 
 repositories {
     mavenCentral()
