@@ -12,7 +12,8 @@ public class ObjectSchema<T> extends AnySchema<T, ObjectSchema<T>> {
     }
 
     public <I> ObjectSchema<T> field(Function<T, I> getter, Schema<I> schema) {
-        return this.schema(target -> schema.validate(getter.apply(target)));
+        this.compose(target -> schema.validate(getter.apply(target)));
+        return this;
     }
 
 }

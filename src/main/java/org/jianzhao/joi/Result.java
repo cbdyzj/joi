@@ -1,18 +1,21 @@
 package org.jianzhao.joi;
 
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class Result {
 
     private static final Result VALID = Result.of(null);
+    private static final Result INVALID = Result.of("Invalid!");
 
     private String message;
 
     public static Result valid() {
         return VALID;
+    }
+
+    public static Result invalid() {
+        return INVALID;
     }
 
     public static Result of(String message) {
@@ -28,7 +31,7 @@ public class Result {
     }
 
     public boolean isValid() {
-        return Objects.isNull(this.message);
+        return null == this.message;
     }
 
     public boolean isInvalid() {
@@ -37,7 +40,7 @@ public class Result {
 
     public void assertValid() {
         if (this.isInvalid()) {
-            throw new RuntimeException(this.message);
+            throw new IllegalArgumentException(this.message);
         }
     }
 
