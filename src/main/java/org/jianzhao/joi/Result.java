@@ -1,6 +1,5 @@
 package org.jianzhao.joi;
 
-import java.util.Objects;
 import java.util.function.Function;
 
 public class Result {
@@ -11,11 +10,11 @@ public class Result {
     private String message;
 
     public static Result valid() {
-        return VALID;
+        return Result.VALID;
     }
 
     public static Result invalid() {
-        return INVALID;
+        return Result.INVALID;
     }
 
     public static Result of(String message) {
@@ -52,7 +51,7 @@ public class Result {
 
     @Override
     public String toString() {
-        return Objects.isNull(this.message)
+        return null == this.message
                 ? "Result: Valid"
                 : String.format("Result: [%s]", this.message);
     }
