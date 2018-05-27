@@ -16,3 +16,6 @@ hs_err_pid*
 .vertx
 out
 build
+.classpath
+.project
+.settings/
