@@ -28,7 +28,7 @@ public class JoiTest {
 
         Result result = humanSchema.validate(alice);
         assert result.isInvalid();
-        assert "Hobbies number to small!".equals(result.message());
+        assert "[Hobbies number to small!]".equals(String.valueOf(result.getMessages()));
     }
 
 }

@@ -1,36 +1,46 @@
 package org.jianzhao.joi;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Function;
 
 public class Result {
 
-    private static final Result VALID = Result.of(null);
-    private static final Result INVALID = Result.of("Invalid!");
+    private boolean valid = true;
 
-    private String message;
+    private final Set<String> messages = new HashSet<>();
 
     public static Result valid() {
-        return Result.VALID;
+        return new Result();
     }
 
     public static Result invalid() {
-        return Result.INVALID;
+        Result result = new Result();
+        result.valid = false;
+        return result;
     }
 
     public static Result of(String message) {
-        return new Result(message);
+        Result result = Result.invalid();
+        result.messages.add(message);
+        return result;
     }
 
-    private Result(String message) {
-        this.message = message;
+    public static Result of(Set<String> messages) {
+        Result result = Result.invalid();
+        result.messages.addAll(messages);
+        return result;
     }
 
-    public String message() {
-        return this.message;
+    private Result() {
+    }
+
+    public Set<String> getMessages() {
+        return this.messages;
     }
 
     public boolean isValid() {
-        return null == this.message;
+        return this.valid;
     }
 
     public boolean isInvalid() {
@@ -39,20 +49,14 @@ public class Result {
 
     public void assertValid() {
         if (this.isInvalid()) {
-            throw new IllegalArgumentException(this.message);
+            throw new IllegalArgumentException(String.valueOf(this.getMessages()));
         }
     }
 
     public <E extends Exception> void assertValid(Function<String, E> f) throws E {
         if (this.isInvalid()) {
-            throw f.apply(this.message);
+            throw f.apply(String.valueOf(this.getMessages()));
         }
     }
 
-    @Override
-    public String toString() {
-        return null == this.message
-                ? "Result: Valid"
-                : String.format("Result: [%s]", this.message);
-    }
 }
