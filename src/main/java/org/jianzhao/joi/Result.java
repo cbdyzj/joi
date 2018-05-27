@@ -1,5 +1,6 @@
 package org.jianzhao.joi;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
@@ -8,7 +9,7 @@ public class Result {
 
     private boolean valid = true;
 
-    private final Set<String> messages = new HashSet<>();
+    private Set<String> messages = Collections.emptySet();
 
     public static Result valid() {
         return new Result();
@@ -22,13 +23,13 @@ public class Result {
 
     public static Result of(String message) {
         Result result = Result.invalid();
-        result.messages.add(message);
+        result.messages = Collections.singleton(message);
         return result;
     }
 
     public static Result of(Set<String> messages) {
         Result result = Result.invalid();
-        result.messages.addAll(messages);
+        result.messages = Collections.unmodifiableSet(messages);
         return result;
     }
 
