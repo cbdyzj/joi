@@ -5,15 +5,15 @@ import org.jianzhao.joi.util.Schemas;
 import java.util.function.Predicate;
 
 @SuppressWarnings("unchecked")
-public abstract class AnySchema<T, S extends Schema<T>> implements Schema<T> {
+public abstract class AnySchema<T, S extends AnySchema<T, S>> implements Schema<T> {
 
     protected Schema<T> delegate = target -> Result.valid();
 
-    private boolean isRequired = false;
+    private boolean required = false;
 
     public Result validate(T target) {
-        if (null == target && !this.isRequired) {
-            return Result.valid();
+        if (null == target) {
+            return this.required ? Result.invalid() : Result.valid();
         }
         return this.delegate.validate(target);
     }
@@ -29,7 +29,7 @@ public abstract class AnySchema<T, S extends Schema<T>> implements Schema<T> {
     }
 
     public S required() {
-        this.isRequired = true;
+        this.required = true;
         return (S) this;
     }
 }
