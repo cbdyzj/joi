@@ -11,7 +11,7 @@ public class JoiTest {
     @Test
     public void test() {
         Joi.integer().min(5).less(10).validate(7).assertValid();
-        Joi.longInteger().min(3000000000L).less(5000000000L).validate(4000000000L).assertValid();
+        Joi.longInteger().min(3_000_000_000L).less(5_000_000_000L).validate(4_000_000_000L).assertValid();
 
         Joi.string().regex("hello.*").message("Not hello!").validate("hello!")
                 .assertValid(IllegalArgumentException::new);
