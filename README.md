@@ -46,10 +46,9 @@ assert "Hobbies number to small!".equals(result.message());
 - Any
   - validate
   - required
-  - requireValid
   - message
-  - schema
   - predicate
+  - compose
 - String
   - regex
   - alphanum
@@ -75,3 +74,7 @@ assert "Hobbies number to small!".equals(result.message());
 - Object
   - type
   - field
+
+## Licence
+
+[WTFPL](https://en.wikipedia.org/wiki/WTFPL)

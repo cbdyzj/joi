@@ -4,13 +4,14 @@ import org.jianzhao.joi.util.Schemas;
 
 import java.util.function.Predicate;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked", "WeakerAccess"})
 public abstract class AnySchema<T, S extends AnySchema<T, S>> implements Schema<T> {
 
     protected Schema<T> delegate = target -> Result.valid();
 
     private boolean required = false;
 
+    @Override
     public Result validate(T target) {
         if (null == target) {
             return this.required ? Result.invalid() : Result.valid();
@@ -18,6 +19,7 @@ public abstract class AnySchema<T, S extends AnySchema<T, S>> implements Schema<
         return this.delegate.validate(target);
     }
 
+    @Override
     public Schema<T> compose(Schema<T> schema) {
         this.delegate = this.delegate.compose(schema);
         return this;
