@@ -28,4 +28,13 @@ public final class Joi {
         return new ArraySchema();
     }
 
+    public static <T> ListSchema<T> list() {
+        return new ListSchema<>();
+    }
+
+    public static <K, V> MapSchema<K, V> map() {
+        return new MapSchema<>();
+    }
+
+
 }
