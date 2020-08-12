@@ -3,7 +3,7 @@ package org.jianzhao.joi.schema;
 import org.jianzhao.joi.AnySchema;
 import org.jianzhao.joi.Result;
 import org.jianzhao.joi.Schema;
-import org.jianzhao.joi.util.Schemas;
+import org.jianzhao.joi.util.SchemaUtils;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class ListSchema<T> extends AnySchema<List<T>, ListSchema<T>> {
         this.compose(target -> {
             Result result = Result.valid();
             for (T item : target) {
-                result = Schemas.merge(schema.validate(item), result);
+                result = SchemaUtils.mergeResult(schema.validate(item), result);
             }
             return result;
         });

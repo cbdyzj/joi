@@ -9,16 +9,16 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public final class Schemas {
+public final class SchemaUtils {
 
-    private Schemas() {
+    private SchemaUtils() {
     }
 
     public static <T> Schema<T> predicate(Predicate<T> predicate) {
         return target -> predicate.test(target) ? Result.valid() : Result.invalid();
     }
 
-    public static Result merge(Result ra, Result rb) {
+    public static Result mergeResult(Result ra, Result rb) {
         if (ra.isValid() && rb.isValid()) {
             return Result.valid();
         }

@@ -20,7 +20,7 @@ See [JitPack](https://jitpack.io/#cbdyzj/joi/0.3.2)
 ### Simple example
 
 ```java
- // integer
+// integer
 Joi.integer().min(5).less(10).validate(7).assertValid();
 // long integer
 Joi.longInteger().min(3_000_000_000L).less(5_000_000_000L)

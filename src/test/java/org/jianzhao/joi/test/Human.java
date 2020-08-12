@@ -1,6 +1,5 @@
 package org.jianzhao.joi.test;
 
-@SuppressWarnings("WeakerAccess")
 public class Human {
 
     private String name;

@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collections;
 
-@SuppressWarnings("WeakerAccess")
 public class JoiTest {
 
     @Test

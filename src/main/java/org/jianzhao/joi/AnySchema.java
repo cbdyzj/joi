@@ -1,6 +1,6 @@
 package org.jianzhao.joi;
 
-import org.jianzhao.joi.util.Schemas;
+import org.jianzhao.joi.util.SchemaUtils;
 
 import java.util.function.Predicate;
 
@@ -26,7 +26,7 @@ public abstract class AnySchema<T, S extends AnySchema<T, S>> implements Schema<
     }
 
     public S predicate(Predicate<T> predicate) {
-        Schema<T> schema = Schemas.predicate(predicate);
+        Schema<T> schema = SchemaUtils.predicate(predicate);
         return (S) this.compose(schema);
     }
 
